@@ -5,8 +5,6 @@
 
 #include <gtk/gtk.h>
 #include <gtk4-layer-shell.h>
-#include <gio/gio.h>
-#include <unistd.h>
 
 
 /*FUNCTION PROTOTYPES*/
@@ -93,8 +91,6 @@ void create_window(App *app) {
 	//Local variables
 	GtkEventController *controller;
 	GtkCssProvider *css;
-	char *exe;
-	char *dir;
 	char *css_path;
 
 	//Creates window
@@ -125,15 +121,11 @@ void create_window(App *app) {
 
 	//Load CSS configuration
 	css = gtk_css_provider_new();
-	exe = g_file_read_link("/proc/self/exe", NULL);
-	dir = g_path_get_dirname(exe);
-	css_path = g_build_filename(dir, "style.css", NULL);
+	css_path = g_build_filename(g_get_user_config_dir(), "power-menu", "style.css", NULL);
 	gtk_css_provider_load_from_path(css, css_path);
 	gtk_style_context_add_provider_for_display(gtk_widget_get_display(GTK_WIDGET(app->window)), GTK_STYLE_PROVIDER(css), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	//Free pointer variables
-	g_free(exe);
-	g_free(dir);
 	g_free(css_path);
 	g_object_unref(css);
 
