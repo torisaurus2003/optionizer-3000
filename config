@@ -1,0 +1,8 @@
+width=100
+height=1
+reboot=systemctl reboot
+poweroff=systemctl poweroff
+lock=hyprlock
+suspend=systemctl suspend
+label_align=center
+spacing=0
