@@ -1,5 +1,5 @@
 /*Listbox configuration*/
-list {
+.power-listbox {
 	background: transparent;
 }
 
@@ -18,6 +18,17 @@ list {
 	background: transparent;
 	color: #d8cab8;
 }
+
+/*Icon configuration*/
+.power-icon {
+	padding-left: 0px;
+}
+
+/*Label configuration*/
+.power-label {
+	padding-right: 0px;
+}
+
 
 /*Selected row configuration*/
 .power-row:selected {
