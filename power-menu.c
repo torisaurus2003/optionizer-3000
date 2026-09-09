@@ -271,7 +271,7 @@ void create_window(App *app) {
 	/* DEFAULT CONFIGURATION */
 
 	//Default config file
-	config = g_build_filename(dir, "config", NULL);
+	config = g_build_filename(dir, "config", "power-menu.conf", NULL);
 	
 	if (load_config(config, &app->config) != 0) {
 		printf("default config file not found at %s\n", dir);
@@ -279,7 +279,7 @@ void create_window(App *app) {
 	}
 
 	//Default style.css
-	style = g_build_filename(dir, "style.css", NULL);
+	style = g_build_filename(dir, "config", "style.css", NULL);
 
 	//Check if the default style is there
 	if(g_file_test(style, G_FILE_TEST_EXISTS)) {
@@ -309,10 +309,10 @@ void create_window(App *app) {
 	/* USER CONFIGURATION */
 
 	//User config file
-	user_config = g_build_filename(g_get_user_config_dir(), "power-menu", "config", NULL);
+	user_config = g_build_filename(g_get_user_config_dir(), "power-menu", "power-menu.conf", NULL);
 
 	if (load_config(user_config, &app->config) != 0) {
-		printf("user config file not found at ~/.config/power-menu\n");
+		printf("user config file not found at ~/.config/power-menu/\n");
 	}
 
 	//user style.css
