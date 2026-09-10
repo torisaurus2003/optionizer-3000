@@ -33,7 +33,7 @@ The reboot, power off, lock and suspend commands can be changed in the [configur
 
 ```bash
 # Clone the repository and compile
-git clone https://github.com/diego-zarate-2003/power-menu.git
+git clone https://github.com/torisaurus2003/power-menu.git
 cd power-menu
 make
 
