@@ -1,5 +1,5 @@
 [options]
-icons=,󰐥,󰌾,󰤄,󰸉
+icons=,󰐥,󰌾,󰤄
 labels=Reboot,Power off,Lock,Suspend
 commands=systemctl reboot,systemctl poweroff,hyprlock,systemctl suspend
 
