@@ -39,15 +39,6 @@ typedef struct {
 	Option *options;		//Window options
 } App;
 
-//Section
-typedef enum {
-	NONE,		//Default
-	OPTIONS,	//Options section of the config file
-	CONFIG		//Configuration section of the config file
-} Section;
-
-Section section = NONE;
-
 /*FUNCTIONS*/
 
 //It gets the amount of labels in the config file
@@ -115,127 +106,87 @@ static int load_config(const char *config_file, App *app) {
 		//Change the string terminator from new line to null
 		line[strcspn(line, "\n")] = '\0';
 
-		//Line length
-		size_t length = strlen(line);
+		if (strncmp(line, "icons=", 6) == 0) {
+					
+			//Icons list
+			char *icon = strtok(line + 6, ",");
 
-		//Check if the line is a section header
-		if (length >= 2 && line[0] == '[' && line[length - 1] == ']') {
-			
-			//Remove the [
-			char *section_name = line + 1;
+			//Index
+			size_t i = 0;
 
-			//Remove the ]
-			section_name[strlen(section_name) - 1] = '\0';
-			
-			//Check if we are in the options section
-			if (strcmp(section_name, "options") == 0) {
-				section = OPTIONS;
+			//Assign each icon
+			while (icon != NULL && i < app->label_count) {
+				app->options[i].icon = strdup(icon);
+    				i++;
+    				icon = strtok(NULL, ",");
 			}
-
-			//Check if we are in the options section
-			if (strcmp(section_name, "config") == 0) {
-				section = CONFIG;
-			}
-
-			continue;
 
 		}
 
-		//Check if we are in the options section
-		if (section == OPTIONS) {
-			
-			//Check if we are on the icons line
-			if (strncmp(line, "icons=", 6) == 0) {
+		if (strncmp(line, "labels=", 7) == 0) {
 					
-				//Icons list
-				char *icon = strtok(line + 6, ",");
+			//Label list
+			char *label = strtok(line + 7, ",");
 
-				//Index
-				size_t i = 0;
+			//Index
+			size_t i = 0;
 
-				//Assign each icon
-				while (icon != NULL && i < app->label_count) {
-					app->options[i].icon = strdup(icon);
-    					i++;
-    					icon = strtok(NULL, ",");
-				}
-
+			//Assign each label
+			while (label != NULL && i < app->label_count) {
+				app->options[i].label = strdup(label);
+    				i++;
+    				label = strtok(NULL, ",");
 			}
 
+		}
 
-			//Check if we are on the labels line
-			if (strncmp(line, "labels=", 7) == 0) {
+		if (strncmp(line, "commands=", 9) == 0) {
 					
-				//Label list
-				char *label = strtok(line + 7, ",");
+			//Commands list
+			char *command = strtok(line + 9, ",");
 
-				//Index
-				size_t i = 0;
+			//Index
+			size_t i = 0;
 
-				//Assign each label
-				while (label != NULL && i < app->label_count) {
-					app->options[i].label = strdup(label);
-    					i++;
-    					label = strtok(NULL, ",");
-				}
-
-			}
-
-			//Check if we are on the commands line
-			if (strncmp(line, "commands=", 9) == 0) {
-					
-				//Commands list
-				char *command = strtok(line + 9, ",");
-
-				//Index
-				size_t i = 0;
-
-				//Assign each command
-				while (command != NULL && i < app->label_count) {
-					app->options[i].command = strdup(command);
-    					i++;
-    					command = strtok(NULL, ",");
-				}
-
+			//Assign each command
+			while (command != NULL && i < app->label_count) {
+				app->options[i].command = strdup(command);
+    				i++;
+    				command = strtok(NULL, ",");
 			}
 
 		}
 		
+		if (strncmp(line, "width=", 6) == 0) {
+			char *width = line + 6;
+			app->config.width = atoi(width);
+		}
 
-		if (section == CONFIG) {
-
-			if (strncmp(line, "width=", 6) == 0) {
-				char *width = line + 6;
-				app->config.width = atoi(width);
-			}
-
-			if (strncmp(line, "height=", 7) == 0) {
-				char *height = line + 7;
-				app->config.height = atoi(height);
-			}
+		if (strncmp(line, "height=", 7) == 0) {
+			char *height = line + 7;
+			app->config.height = atoi(height);
+		}
 		
-			if (strncmp(line, "x_pos=", 6) == 0) {
-				char *x_pos = line + 6;
-				app->config.x_pos = atoi(x_pos);
-				app->config.has_position = true;
-			}
+		if (strncmp(line, "x_pos=", 6) == 0) {
+			char *x_pos = line + 6;
+			app->config.x_pos = atoi(x_pos);
+			app->config.has_position = true;
+		}
 
-			if (strncmp(line, "y_pos=", 6) == 0) {
-				char *y_pos = line + 6;
-				app->config.y_pos = atoi(y_pos);
-				app->config.has_position = true;
-			}
+		if (strncmp(line, "y_pos=", 6) == 0) {
+			char *y_pos = line + 6;
+			app->config.y_pos = atoi(y_pos);
+			app->config.has_position = true;
+		}
 				
-			if (strncmp(line, "label_align=", 12) == 0) {
-				char *label_align = line + 12;
-				app->config.label_align = strdup(label_align);
-			}
+		if (strncmp(line, "label_align=", 12) == 0) {
+			char *label_align = line + 12;
+			app->config.label_align = strdup(label_align);
+		}
 
-			if (strncmp(line, "spacing=", 8) == 0) {
-				char *spacing = line + 8;
-				app->config.spacing = atoi(spacing);
-			}
-
+		if (strncmp(line, "spacing=", 8) == 0) {
+			char *spacing = line + 8;
+			app->config.spacing = atoi(spacing);
 		}
 		
 	}
