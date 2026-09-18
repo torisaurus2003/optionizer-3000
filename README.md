@@ -1,6 +1,6 @@
 # Optionizer 3000
 
-Got options? want to execute them? This is for you.  
+Got options? Want to execute them? This is for you.  
 
 Optionizer 3000 takes any options you have and lets you choose between them
 in a convenient presentation. Add labels, icons, commands and customize as much as you need.
@@ -10,7 +10,7 @@ in a convenient presentation. Add labels, icons, commands and customize as much 
 	<img height="100" src="screenshots/no-icons.png">
 </p>
 
-Doesn't it look like a power menu? well, it is, or at least that's how it started. I was using wofi as my power menu, but the window size kept bugging out, so yeah.
+"Doesn't it look just like a power menu?" Well, it started as one. I was using wofi as my power menu, but the window size kept bugging out, so I made this as a replacement. You can gut it, replace the example options and add whatever you want. Optionizer 3000 just executes a command by selecting its respective label inside the window.
 
 ## Requirements
 
@@ -23,12 +23,8 @@ Runtime dependencies:
 - A Wayland compositor with layer shell support like Sway or Hyprland
 - GTK 4
 - GTK 4 Layer Shell
-- systemd (optional)
-- hyprlock (optional)
-- RobotoMono Nerd Font (optional)
-- Symbols Nerd Font (optional)
 
-The reboot, power off, lock and suspend commands can be changed in the [configuration file](examples/config#L3) and the font configuration can be changed in the [style file](examples/style.css#L6), therefore, systemd, hyprlock, RobotoMono Nerd Font and Symbols Nerd Font aren't strict dependencies.
+The commands used in the example configuration can be changed in the [configuration file](examples/config#L3) and the font settings can be changed in the [style file](examples/style.css#L6).
 
 ## Installation
 
@@ -58,7 +54,7 @@ Comma separated list of option labels
 - **commands=*str* (command1,command2,command3,...)**  
 Comma separated list of option commands
 
-The icons, labels and commands should contain the same number of elements and use the same order, with each element at the same position belonging to the same option. Labels and commands can work together without icons, and labels and icons can work together without commands, but the program needs **at least** one label in order to create the window. In order to skip an element from any of the three lists, its place has to be replaced with " ".
+The icons, labels and commands should contain the same number of elements and use the same order, with the elements at the same position belonging to the same option. Labels and commands can work together without icons, and labels and icons can work together without commands, but the program needs **at least** one label in order to create the window. In order to skip an element from any of the three lists, its place has to be replaced with " ".
 
 - **width=*int***  
 Sets the window's width in pixels. Default is 200
@@ -67,7 +63,7 @@ Sets the window's height in pixels. Default is 1
 - **x_pos=*int***  
 Sets the window's horizontal position in pixels. Default is unset
 - **y_pos=*int***  
-Sets the window's vertical position in pixels. Default is unset. If both x_pos and y_pos are not set, the window defaults to the center. The position increases from left to right and top to bottom
+Sets the window's vertical position in pixels. Default is unset. If both x_pos and y_pos are unset, the window defaults to the center. The position increases from left to right and top to bottom
 - **label_align=*str* (left|center|right)**  
 Sets the horizontal alignment for the text label. Default is center.
 - **spacing=*int***  
@@ -110,4 +106,14 @@ The new option will be there the next time you open the window:
     <img height="100" src="screenshots/new-option.png">
 </p>
 
-Or just gut it, remove everything and add whatever you want. This just executes a command by selecting its respective label inside the window.
+Or you can build your own menu:
+
+```c
+icons=,󰸉,󰈉,󰍭
+labels=Pomodoro,Wallpaper,Inhibit idle,mute mic
+commands=pomodoro,wallpaper-random,pkill -x hypridle,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+```
+
+<p align="center">
+	<img height="100" src="screenshots/extra.png">
+</p>
