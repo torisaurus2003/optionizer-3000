@@ -1,8 +1,8 @@
-# optionizer-3000
+# Optionizer 3000
 
 Got options? want to execute them? This is for you.  
 
-optionizer-3000 takes any options you have and lets you choose between them
+Optionizer 3000 takes any options you have and lets you choose between them
 in a convenient presentation. Add labels, icons, commands and customize as much as you need.
 
 <p align="center">
@@ -58,16 +58,16 @@ Comma separated list of option labels
 - **commands=*str* (command1,command2,command3,...)**  
 Comma separated list of option commands
 
-Preferably, the icons, labels and commands contain the same number of elements and are ordered as they appear in the window from top to bottom. Lables and commands can work by themselves, same with labels and icons, but the program needs **at least** one label in order to create the window. In order to skip an element from any of the three lists, its place has to be replaced with " ".
+The icons, labels and commands should contain the same number of elements and use the same order, with each element at the same position belonging to the same option. Labels and commands can work together without icons, and labels and icons can work together without commands, but the program needs **at least** one label in order to create the window. In order to skip an element from any of the three lists, its place has to be replaced with " ".
 
 - **width=*int***  
 Sets the window's width in pixels. Default is 200
 - **height=*int***  
 Sets the window's height in pixels. Default is 1
 - **x_pos=*int***  
-Sets the window's horizontal position in pixels. Default is NULL
+Sets the window's horizontal position in pixels. Default is unset
 - **y_pos=*int***  
-Sets the window's vertical position in pixels. Default is NULL. If both x_pos and y_pos are not set, the window defaults to the center. The position increases from left to right and top to bottom
+Sets the window's vertical position in pixels. Default is unset. If both x_pos and y_pos are not set, the window defaults to the center. The position increases from left to right and top to bottom
 - **label_align=*str* (left|center|right)**  
 Sets the horizontal alignment for the text label. Default is center.
 - **spacing=*int***  
