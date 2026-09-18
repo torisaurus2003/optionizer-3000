@@ -1,9 +1,6 @@
-[options]
 icons=,󰐥,󰌾,󰤄
 labels=Reboot,Power off,Lock,Suspend
 commands=systemctl reboot,systemctl poweroff,hyprlock,systemctl suspend
-
-[config]
 width=100
 height=1
 x_pos=628
