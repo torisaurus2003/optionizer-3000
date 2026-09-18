@@ -28,7 +28,7 @@ Runtime dependencies:
 - RobotoMono Nerd Font (optional)
 - Symbols Nerd Font (optional)
 
-The reboot, power off, lock and suspend commands can be changed in the [configuration file](examples/config#L3) and the font configuration can be changed in [the style file](examples/style.css#L6), therefore, systemd, hyprlock, RobotoMono Nerd Font and Symbols Nerd Font aren't strict dependencies.
+The reboot, power off, lock and suspend commands can be changed in the [configuration file](examples/config#L3) and the font configuration can be changed in the [style file](examples/style.css#L6), therefore, systemd, hyprlock, RobotoMono Nerd Font and Symbols Nerd Font aren't strict dependencies.
 
 ## Installation
 
@@ -111,7 +111,3 @@ The new option will be there the next time you open the window:
 </p>
 
 Or just gut it, remove everything and add whatever you want. This just executes a command by selecting its respective label inside the window.
-
-<p align="center">
-    <img width="800" src="screenshots/icons.png">
-</p>
